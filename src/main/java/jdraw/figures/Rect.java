@@ -9,11 +9,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.List;
 
 import jdraw.framework.Figure;
-import jdraw.framework.FigureHandle;
-import jdraw.framework.FigureListener;
 
 /**
  * Represents rectangles in JDraw.
@@ -21,7 +18,7 @@ import jdraw.framework.FigureListener;
  * @author Christoph Denzler
  *
  */
-public class Rect implements Figure {
+public class Rect extends AbstractFigure {
 	/**
 	 * Use the java.awt.Rectangle in order to save/reuse code.
 	 */
@@ -53,13 +50,13 @@ public class Rect implements Figure {
 	@Override
 	public void setBounds(Point origin, Point corner) {
 		rectangle.setFrameFromDiagonal(origin, corner);
-		// TODO notification of change
+		notifyListeners();
 	}
 
 	@Override
 	public void move(int dx, int dy) {
 		rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
-		// TODO notification of change
+		notifyListeners();
 	}
 
 	@Override
@@ -70,26 +67,6 @@ public class Rect implements Figure {
 	@Override
 	public Rectangle getBounds() {
 		return rectangle.getBounds();
-	}
-
-	/**
-	 * Returns a list of 8 handles for this Rectangle.
-	 * @return all handles that are attached to the targeted figure.
-	 * @see jdraw.framework.Figure#getHandles()
-	 */	
-	@Override
-	public List<FigureHandle> getHandles() {
-		return null;
-	}
-
-	@Override
-	public void addFigureListener(FigureListener listener) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void removeFigureListener(FigureListener listener) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
