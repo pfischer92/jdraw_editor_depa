@@ -71,7 +71,6 @@ public class Rect extends AbstractFigure {
 
 	@Override
 	public Figure clone() {
-		return null;
+		return new Rect((int)rectangle.getX(), (int)rectangle.getY(), rectangle.width, rectangle.height);
 	}
-
 }
