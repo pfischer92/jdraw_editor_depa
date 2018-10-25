@@ -9,8 +9,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.LinkedList;
+import java.util.List;
 
 import jdraw.framework.Figure;
+import jdraw.framework.FigureHandle;
 
 /**
  * Represents rectangles in JDraw.
@@ -72,5 +75,18 @@ public class Rect extends AbstractFigure {
 	@Override
 	public Figure clone() {
 		return new Rect((int)rectangle.getX(), (int)rectangle.getY(), rectangle.width, rectangle.height);
+	}
+
+	public List<FigureHandle> getHandles() {
+		List<FigureHandle> handles = new LinkedList<>();
+		handles.add(new NorthWestHandle(this));
+		handles.add(new NorthEastHandle(this));
+		handles.add(new NorthCenterHandle(this));
+		handles.add(new SouthCenterHandle(this));
+		handles.add(new SouthEastHandle(this));
+		handles.add(new SouthWestHandle(this));
+		handles.add(new EastCenterHandle(this));
+		handles.add(new WestCenterHandle(this));
+		return handles;
 	}
 }

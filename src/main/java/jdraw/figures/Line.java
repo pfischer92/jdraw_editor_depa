@@ -1,9 +1,12 @@
 package jdraw.figures;
 
 import jdraw.framework.Figure;
+import jdraw.framework.FigureHandle;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Line extends AbstractFigure {
 
@@ -59,5 +62,10 @@ public class Line extends AbstractFigure {
     @Override
     public Figure clone() {
         return new Line((int) line.getX1(), (int) line.getY1(), (int) line.getX2(), (int) line.getY2());
+    }
+
+    public java.util.List<FigureHandle> getHandles() {
+        List<FigureHandle> handles = new LinkedList<>();
+        return handles;
     }
 }

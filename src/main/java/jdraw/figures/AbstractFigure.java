@@ -11,7 +11,6 @@ import jdraw.framework.FigureListener;
 public abstract class AbstractFigure implements Figure {
 	
     private final List<FigureListener> listeners = new CopyOnWriteArrayList<>();
-    private final List<FigureHandle> handles = new CopyOnWriteArrayList<>();
 
     @Override
     public final void addFigureListener(FigureListener listener) {
@@ -24,22 +23,6 @@ public abstract class AbstractFigure implements Figure {
     public final void removeFigureListener(FigureListener listener) {
     	if (listener != null && listeners.contains(listener)) {
         	listeners.remove(listener);
-        }
-    }
-
-    @Override
-    public final List<FigureHandle> getHandles() {
-        return (!handles.isEmpty()) ? new CopyOnWriteArrayList<>(handles) : null;
-    }
-
-    /**
-     * Add a new figure handle.
-     *
-     * @param handle New figure handle
-     */
-    protected final void addFigureHandle(FigureHandle handle) {
-    	if (handles != null && !handles.contains(handle)) {
-        	handles.add(handle);
         }
     }
 

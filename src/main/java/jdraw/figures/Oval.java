@@ -1,9 +1,12 @@
 package jdraw.figures;
 
 import jdraw.framework.Figure;
+import jdraw.framework.FigureHandle;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Oval extends AbstractFigure {
 
@@ -52,5 +55,10 @@ public class Oval extends AbstractFigure {
     @Override
     public Figure clone() {
         return new Oval((int) ellipse.getX(), (int) ellipse.getY(), (int) ellipse.getWidth(), (int) ellipse.getHeight());
+    }
+
+    public java.util.List<FigureHandle> getHandles() {
+        List<FigureHandle> handles = new LinkedList<>();
+        return handles;
     }
 }
