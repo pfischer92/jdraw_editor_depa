@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public abstract class AbstractFigureHandle implements FigureHandle {
+    private static final int HANDLE_SIZE = 6;
     protected Figure owner;
     protected Point corner;
 
@@ -31,7 +32,10 @@ public abstract class AbstractFigureHandle implements FigureHandle {
 
     @Override
     public boolean contains(int x, int y) {
-        return owner.contains(x, y);
+        Point loc = getLocation();
+
+        return Math.abs(x-loc.x) < HANDLE_SIZE / 2 &&
+                Math.abs(y -loc.y) < HANDLE_SIZE / 2;
     }
 
 

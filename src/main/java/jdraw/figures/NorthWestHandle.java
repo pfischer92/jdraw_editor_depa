@@ -16,7 +16,8 @@ public class NorthWestHandle extends AbstractFigureHandle {
 
     @Override
     public Point getLocation() {
-        return owner.getBounds().getLocation();
+        Rectangle r = getOwner().getBounds();
+        return new Point(r.x, r.y);
     }
 
 
@@ -33,7 +34,8 @@ public class NorthWestHandle extends AbstractFigureHandle {
 
     @Override
     public void dragInteraction(int x, int y, MouseEvent e, DrawView v) {
-        owner.setBounds(new Point(x, y), corner);
+        Rectangle r = getOwner().getBounds();
+        getOwner().setBounds(new Point(x, y), new Point(r.x+r.width, r.y+r.height));
     }
 
 }

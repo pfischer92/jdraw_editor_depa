@@ -59,6 +59,10 @@ public class Oval extends AbstractFigure {
 
     public java.util.List<FigureHandle> getHandles() {
         List<FigureHandle> handles = new LinkedList<>();
+        handles.add(new NorthCenterHandle(this));
+        handles.add(new SouthCenterHandle(this));
+        handles.add(new EastCenterHandle(this));
+        handles.add(new WestCenterHandle(this));
         return handles;
     }
 }
