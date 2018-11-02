@@ -8,61 +8,29 @@ import java.awt.geom.Ellipse2D;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Oval extends AbstractFigure {
+public class Oval extends AbstractRectangularFigure {
 
-    private final Ellipse2D ellipse;
 
     public Oval(int x, int y, int w, int h) {
-        ellipse = new Ellipse2D.Double(x, y, w, h);
+
+        super(x,y,w,h);
     }
 
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
-        g.fillOval((int) ellipse.getX(), (int) ellipse.getY(), (int) ellipse.getWidth(), (int) ellipse.getHeight());
+        g.fillOval(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         g.setColor(Color.BLACK);
-        g.drawOval((int) ellipse.getX(), (int) ellipse.getY(), (int) ellipse.getWidth(), (int) ellipse.getHeight());
-    }
-
-    @Override
-    public void move(int dx, int dy) {
-        if (dx == 0 && dy == 0) {
-            return;
-        }
-
-        ellipse.setFrame(ellipse.getX() + dx, ellipse.getY() + dy, ellipse.getWidth(), ellipse.getHeight());
-
+        g.drawOval(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         notifyListeners();
     }
 
     @Override
     public boolean contains(int x, int y) {
-        return ellipse.contains(x, y);
+        Rectangle tmpRect = rectangle;
+        Ellipse2D tmpOval = new Ellipse2D.Double(tmpRect.x, tmpRect.y, tmpRect.width, tmpRect.height);
+        return tmpOval.contains(x, y);
     }
 
-    @Override
-    public void setBounds(Point origin, Point corner) {
-        ellipse.setFrameFromCenter(origin.x, origin.y, corner.x, corner.y);
 
-        notifyListeners();
-    }
-
-    @Override
-    public Rectangle getBounds() {
-        return ellipse.getBounds();
-    }
-
-    @Override
-    public Figure clone() {
-        return new Oval((int) ellipse.getX(), (int) ellipse.getY(), (int) ellipse.getWidth(), (int) ellipse.getHeight());
-    }
-
-    public java.util.List<FigureHandle> getHandles() {
-        List<FigureHandle> handles = new LinkedList<>();
-        handles.add(new NorthCenterHandle(this));
-        handles.add(new SouthCenterHandle(this));
-        handles.add(new EastCenterHandle(this));
-        handles.add(new WestCenterHandle(this));
-        return handles;
-    }
 }

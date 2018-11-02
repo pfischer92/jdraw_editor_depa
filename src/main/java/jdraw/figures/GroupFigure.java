@@ -2,17 +2,17 @@ package jdraw.figures;
 
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
-import jdraw.framework.FigureListener;
 
 import java.awt.*;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
-public class Group implements Figure {
+public class GroupFigure extends AbstractFigure implements Figure {
     private List<Figure> figuresOfGroup;
     private Rectangle bounds;
 
-    public Group(List<Figure> selection) {
+    public GroupFigure(List<Figure> selection) {
         this.figuresOfGroup = selection;
         getBounds();
     }
@@ -56,19 +56,15 @@ public class Group implements Figure {
         return null;
     }
 
-    @Override
-    public void addFigureListener(FigureListener listener) {
-
-    }
 
     @Override
-    public void removeFigureListener(FigureListener listener) {
-
-    }
-
-    @Override
-    public Figure clone() {
-        return null;
+    public GroupFigure clone() {
+        GroupFigure copy = (GroupFigure) super.clone();
+        copy.figuresOfGroup = new LinkedList<>();
+        for (Figure f : figuresOfGroup) {
+            copy.figuresOfGroup.add(f.clone());
+        }
+        return copy;
     }
 
     public Iterable<Figure> getGroupParts() {

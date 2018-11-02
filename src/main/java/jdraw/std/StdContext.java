@@ -5,6 +5,7 @@
 package jdraw.std;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +17,7 @@ import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import jdraw.figures.Group;
+import jdraw.figures.GroupFigure;
 import jdraw.figures.LineTool;
 import jdraw.figures.OvalTool;
 import jdraw.figures.RectTool;
@@ -39,6 +40,7 @@ import jdraw.grid.NoGrid;
  */
 @SuppressWarnings("serial")
 public class StdContext extends AbstractContext {
+    private final List<Figure> clipboardFigures = new ArrayList<>();
 	/**
 	 * Constructs a standard context with a default set of drawing tools.
 	 * @param view the view that is displaying the actual drawing.
@@ -101,9 +103,41 @@ public class StdContext extends AbstractContext {
 		);
 
 		editMenu.addSeparator();
-		editMenu.add("Cut").setEnabled(false);
-		editMenu.add("Copy").setEnabled(false);
-		editMenu.add("Paste").setEnabled(false);
+
+		JMenuItem cut = new JMenuItem("Cut");
+		editMenu.add(cut);
+		cut.addActionListener(e -> {
+		    clipboardFigures.clear();
+            for(Figure f : getView().getSelection()){
+                getModel().removeFigure(f);
+                clipboardFigures.add(f);
+            }
+        });
+
+        JMenuItem copy = new JMenuItem("Copy");
+        editMenu.add(copy);
+        cut.addActionListener(e -> {
+            clipboardFigures.clear();
+            for(Figure f : getView().getSelection()){
+                clipboardFigures.add(f);
+            }
+        });
+
+
+        JMenuItem paste = new JMenuItem("Paste");
+        editMenu.add(paste);
+        paste.addActionListener(e -> {
+            if(clipboardFigures.isEmpty()){
+            } else {
+                Figure tmp = null;
+                for(Figure f : clipboardFigures){
+                    tmp = f.clone();
+                    tmp.move(10,10);
+                    getModel().addFigure(tmp);
+                }
+                clipboardFigures.clear();
+            }
+        });
 
 		editMenu.addSeparator();
 		JMenuItem clear = new JMenuItem("Clear");
@@ -113,11 +147,11 @@ public class StdContext extends AbstractContext {
 		});
 		
 		editMenu.addSeparator();
-		JMenuItem group = new JMenuItem("Group");
+		JMenuItem group = new JMenuItem("GroupFigure");
 		group.setEnabled(true);
 		group.addActionListener(e -> {
             List<Figure> figuresToGroup = getView().getSelection();
-            getModel().addFigure(new Group(figuresToGroup));
+            getModel().addFigure(new GroupFigure(figuresToGroup));
             figuresToGroup.forEach(f -> {getModel().removeFigure(f);
             });
             getView().getSelection().clear();
@@ -131,8 +165,8 @@ public class StdContext extends AbstractContext {
             Iterator<Figure> figuresToUngroupIT = figuresToUngroup.iterator();
             while(figuresToUngroupIT.hasNext()){
                 Figure figure = figuresToUngroupIT.next();
-                if(figure instanceof Group){
-                    Iterable<Figure> eachPartOfThisGroup = ((Group) figure).getGroupParts();
+                if(figure instanceof GroupFigure){
+                    Iterable<Figure> eachPartOfThisGroup = ((GroupFigure) figure).getGroupParts();
                     Iterator<Figure> it = eachPartOfThisGroup.iterator();
                     while(it.hasNext()){
                         Figure singleFigure = it.next();

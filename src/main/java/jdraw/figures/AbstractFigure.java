@@ -1,5 +1,6 @@
 package jdraw.figures;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -10,13 +11,21 @@ import jdraw.framework.FigureListener;
 
 public abstract class AbstractFigure implements Figure {
 	
-    private final List<FigureListener> listeners = new CopyOnWriteArrayList<>();
+    private List<FigureListener> listeners = new CopyOnWriteArrayList<>();
 
     @Override
     public final void addFigureListener(FigureListener listener) {
         if (listener != null && !listeners.contains(listener)) {
         	listeners.add(listener);
         }
+    }
+
+    @Override
+    public List<FigureHandle> getHandles(){
+        List<FigureHandle> handles = new LinkedList<>();
+        handles.add(new NorthWestHandle(this));
+        handles.add(new SouthEastHandle(this));
+        return handles;
     }
 
     @Override
@@ -36,5 +45,12 @@ public abstract class AbstractFigure implements Figure {
         }
     }
 
-    abstract public Figure clone();
+    public AbstractFigure clone(){
+        try {
+            AbstractFigure copy = (AbstractFigure) super.clone();
+            copy.listeners = new LinkedList<>();
+            return copy;
+        } catch (CloneNotSupportedException e) {
+            throw new InternalError(); }
+    }
 }

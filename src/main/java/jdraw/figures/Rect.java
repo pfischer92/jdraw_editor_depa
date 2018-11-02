@@ -21,72 +21,22 @@ import jdraw.framework.FigureHandle;
  * @author Christoph Denzler
  *
  */
-public class Rect extends AbstractFigure {
-	/**
-	 * Use the java.awt.Rectangle in order to save/reuse code.
-	 */
-	private final Rectangle rectangle;
-	
-	/**
-	 * Create a new rectangle of the given dimension.
-	 * @param x the x-coordinate of the upper left corner of the rectangle
-	 * @param y the y-coordinate of the upper left corner of the rectangle
-	 * @param w the rectangle's width
-	 * @param h the rectangle's height
-	 */
-	public Rect(int x, int y, int w, int h) {
-		rectangle = new Rectangle(x, y, w, h);
-	}
+public class Rect extends AbstractRectangularFigure {
+    public Rect(int x, int y, int w, int h) {
+        super(x,y,w,h);
+    }
 
-	/**
-	 * Draw the rectangle to the given graphics context.
-	 * @param g the graphics context to use for drawing.
-	 */
-	@Override
-	public void draw(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-		g.setColor(Color.BLACK);
-		g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-	}
-	
-	@Override
-	public void setBounds(Point origin, Point corner) {
-		rectangle.setFrameFromDiagonal(origin, corner);
-		notifyListeners();
-	}
+    @Override
+    public void draw(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        g.setColor(Color.BLACK);
+        g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        notifyListeners();
+    }
 
-	@Override
-	public void move(int dx, int dy) {
-		rectangle.setLocation(rectangle.x + dx, rectangle.y + dy);
-		notifyListeners();
-	}
-
-	@Override
-	public boolean contains(int x, int y) {
-		return rectangle.contains(x, y);
-	}
-
-	@Override
-	public Rectangle getBounds() {
-		return rectangle.getBounds();
-	}
-
-	@Override
-	public Figure clone() {
-		return new Rect((int)rectangle.getX(), (int)rectangle.getY(), rectangle.width, rectangle.height);
-	}
-
-	public List<FigureHandle> getHandles() {
-		List<FigureHandle> handles = new LinkedList<>();
-		handles.add(new NorthWestHandle(this));
-		handles.add(new NorthEastHandle(this));
-		handles.add(new NorthCenterHandle(this));
-		handles.add(new SouthCenterHandle(this));
-		handles.add(new SouthEastHandle(this));
-		handles.add(new SouthWestHandle(this));
-		handles.add(new EastCenterHandle(this));
-		handles.add(new WestCenterHandle(this));
-		return handles;
-	}
+    @Override
+    public boolean contains(int x, int y) {
+        return rectangle.contains(x, y);
+    }
 }
