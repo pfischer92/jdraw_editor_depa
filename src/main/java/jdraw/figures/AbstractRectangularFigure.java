@@ -18,7 +18,7 @@ public abstract class AbstractRectangularFigure extends AbstractFigure {
     public void move(int dx, int dy) {
         if (dx != 0 || dy != 0) { // notification only if changed
             rectangle.translate(dx, dy);
-            notifyListeners();
+            propagateFigureEvent();
         }
     }
 
@@ -31,7 +31,7 @@ public abstract class AbstractRectangularFigure extends AbstractFigure {
     public void setBounds(Point origin, Point corner) {
         Rectangle original = new Rectangle(rectangle); rectangle.setFrameFromDiagonal(origin, corner);
         if (!original.equals(rectangle)) { // notification only if
-            notifyListeners(); // there is a change
+            propagateFigureEvent(); // there is a change
              }
     }
 

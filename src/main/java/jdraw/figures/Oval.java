@@ -1,12 +1,7 @@
 package jdraw.figures;
 
-import jdraw.framework.Figure;
-import jdraw.framework.FigureHandle;
-
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Oval extends AbstractRectangularFigure {
 
@@ -22,7 +17,7 @@ public class Oval extends AbstractRectangularFigure {
         g.fillOval(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         g.setColor(Color.BLACK);
         g.drawOval(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-        notifyListeners();
+        propagateFigureEvent();
     }
 
     @Override

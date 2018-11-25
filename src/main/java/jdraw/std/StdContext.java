@@ -4,7 +4,7 @@
  */
 package jdraw.std;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -147,38 +147,36 @@ public class StdContext extends AbstractContext {
 		});
 		
 		editMenu.addSeparator();
-		JMenuItem group = new JMenuItem("GroupFigure");
-		group.setEnabled(true);
-		group.addActionListener(e -> {
-            List<Figure> figuresToGroup = getView().getSelection();
-            getModel().addFigure(new GroupFigure(figuresToGroup));
-            figuresToGroup.forEach(f -> {getModel().removeFigure(f);
-            });
-            getView().getSelection().clear();
+
+		JMenuItem group = new JMenuItem("Group");
+        editMenu.add(group);
+        group.addActionListener(e -> {
+            List<Figure> selection = getView().getSelection();
+            if(selection != null && selection.size() >= 2){
+                GroupFigure g = new GroupFigure(new ArrayList<>(selection));
+                DrawModel m = getView().getModel();
+                for (Figure f : selection){
+                    m.removeFigure(f);
+                }
+                m.addFigure(g);
+                getView().addToSelection(g);
+            }
         });
-		editMenu.add(group);
 
 		JMenuItem ungroup = new JMenuItem("Ungroup");
-		ungroup.setEnabled(true);
+        editMenu.add(ungroup);
         ungroup.addActionListener(e -> {
-            List<Figure> figuresToUngroup = getView().getSelection();
-            Iterator<Figure> figuresToUngroupIT = figuresToUngroup.iterator();
-            while(figuresToUngroupIT.hasNext()){
-                Figure figure = figuresToUngroupIT.next();
-                if(figure instanceof GroupFigure){
-                    Iterable<Figure> eachPartOfThisGroup = ((GroupFigure) figure).getGroupParts();
-                    Iterator<Figure> it = eachPartOfThisGroup.iterator();
-                    while(it.hasNext()){
-                        Figure singleFigure = it.next();
-                        getView().getModel().addFigure(singleFigure);
+            for (Figure g : getView().getSelection()){
+                if(g instanceof GroupFigure){
+                    getModel().removeFigure(g);
+                    for (Figure f : ((GroupFigure)g).getGroupParts()){
+                        getModel().addFigure(f);
+                        getView().addToSelection(f);
                     }
-                    getModel().removeFigure(figure);
-                    figuresToUngroupIT.remove();
                 }
             }
-            getView().getSelection().clear();
         });
-		editMenu.add(ungroup);
+
 
 		editMenu.addSeparator();
 
@@ -315,8 +313,19 @@ public class StdContext extends AbstractContext {
 			if(filter instanceof FileNameExtensionFilter && !filter.accept(file)) {
 				file = new File(chooser.getCurrentDirectory(), file.getName() + "." + ((FileNameExtensionFilter)filter).getExtensions()[0]);
 			}
-			System.out.println("save current graphic to file " + file.getName() + " using format "
-					+ ((FileNameExtensionFilter)filter).getExtensions()[0]);
+            try{
+                if(chooser.getFileFilter() == filter && !filter.accept(file)){
+                    file = new File(chooser.getCurrentDirectory(), file.getName() + ".draw");
+                }
+                try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))){
+                    for (Figure f : getModel().getFigures()){
+                        oos.writeObject(f.clone());
+                    }
+                    oos.writeObject(null);
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+            }
 		}
 	}
 
@@ -328,7 +337,7 @@ public class StdContext extends AbstractContext {
 				.getFile());
 		chooser.setDialogTitle("Open Graphic");
 		chooser.setDialogType(JFileChooser.OPEN_DIALOG);
-		chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+        chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
 			@Override
 			public String getDescription() {
 				return "JDraw Graphic (*.draw)";
@@ -339,13 +348,28 @@ public class StdContext extends AbstractContext {
 				return f.isDirectory() || f.getName().endsWith(".draw");
 			}
 		});
+
 		int res = chooser.showOpenDialog(this);
 
 		if (res == JFileChooser.APPROVE_OPTION) {
 			// read jdraw graphic
-			System.out.println("read file "
-					+ chooser.getSelectedFile().getName());
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(chooser.getSelectedFile()))) {
+                DrawModel m = getModel();
+                m.removeAllFigures();
+                while (true) {
+                    try {
+                        Object x = ois.readObject();
+                        if (x == null) {
+                            break;
+                        }
+                        m.addFigure((Figure) x);
+                    } catch (ClassNotFoundException e) {
+                        System.out.println("Figure not found" + e.getMessage());
+                    }
+                }
+            } catch (Exception e){
+                System.out.println(e);
+            }
 		}
 	}
-
 }

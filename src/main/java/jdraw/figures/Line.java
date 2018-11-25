@@ -1,6 +1,5 @@
 package jdraw.figures;
 
-import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
 
 import java.awt.*;
@@ -38,7 +37,7 @@ public class Line extends AbstractFigure {
         line.x2 += dx;
         line.y2 += dy;
 
-        notifyListeners();
+        propagateFigureEvent();
     }
 
     @Override
@@ -53,7 +52,7 @@ public class Line extends AbstractFigure {
         line.x2 = corner.x;
         line.y2 = corner.y;
 
-        notifyListeners();
+        propagateFigureEvent();
     }
 
     @Override

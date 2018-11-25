@@ -11,12 +11,12 @@ import jdraw.framework.FigureListener;
 
 public abstract class AbstractFigure implements Figure {
 	
-    private List<FigureListener> listeners = new CopyOnWriteArrayList<>();
+    private List<FigureListener> figureListeners = new CopyOnWriteArrayList<>();
 
     @Override
     public final void addFigureListener(FigureListener listener) {
-        if (listener != null && !listeners.contains(listener)) {
-        	listeners.add(listener);
+        if (listener != null && !figureListeners.contains(listener)) {
+        	figureListeners.add(listener);
         }
     }
 
@@ -30,17 +30,17 @@ public abstract class AbstractFigure implements Figure {
 
     @Override
     public final void removeFigureListener(FigureListener listener) {
-    	if (listener != null && listeners.contains(listener)) {
-        	listeners.remove(listener);
+    	if (listener != null && figureListeners.contains(listener)) {
+        	figureListeners.remove(listener);
         }
     }
 
     /**
-     * Update all listeners about the figure change.
+     * Update all figureListeners about the figure change.
      */
-    protected final void notifyListeners() {
+    protected final void propagateFigureEvent() {
         FigureEvent event = new FigureEvent(this);
-        for (FigureListener listener : listeners) {
+        for (FigureListener listener : figureListeners) {
             listener.figureChanged(event);
         }
     }
@@ -48,7 +48,7 @@ public abstract class AbstractFigure implements Figure {
     public AbstractFigure clone(){
         try {
             AbstractFigure copy = (AbstractFigure) super.clone();
-            copy.listeners = new LinkedList<>();
+            copy.figureListeners = new LinkedList<>();
             return copy;
         } catch (CloneNotSupportedException e) {
             throw new InternalError(); }
