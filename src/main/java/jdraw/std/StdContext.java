@@ -17,10 +17,7 @@ import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import jdraw.figures.GroupFigure;
-import jdraw.figures.LineTool;
-import jdraw.figures.OvalTool;
-import jdraw.figures.RectTool;
+import jdraw.figures.*;
 import jdraw.framework.DrawCommandHandler;
 import jdraw.framework.DrawModel;
 import jdraw.framework.DrawTool;
@@ -207,6 +204,19 @@ public class StdContext extends AbstractContext {
         grid.add(noGrid);
 
 		editMenu.add(grid);
+
+        JMenuItem borderDecorator = new JMenuItem("Add border decoration");
+        borderDecorator.addActionListener(e -> {
+            List<Figure> selectedFigures = getView().getSelection();
+            getView().clearSelection();
+            for(Figure selectedFigure : selectedFigures){
+                BorderDecorator decoratedFigure = new BorderDecorator(selectedFigure);
+                getModel().removeFigure(selectedFigure);
+                getModel().addFigure(decoratedFigure);
+                getView().addToSelection(decoratedFigure);
+            }
+        });
+        editMenu.add(borderDecorator);
 		
 		return editMenu;
 	}
