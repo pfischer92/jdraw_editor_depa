@@ -205,6 +205,8 @@ public class StdContext extends AbstractContext {
 
 		editMenu.add(grid);
 
+        JMenu decorators = new JMenu("Decorators...");
+
         JMenuItem borderDecorator = new JMenuItem("Add border decoration");
         borderDecorator.addActionListener(e -> {
             List<Figure> selectedFigures = getView().getSelection();
@@ -216,7 +218,8 @@ public class StdContext extends AbstractContext {
                 getView().addToSelection(decoratedFigure);
             }
         });
-        editMenu.add(borderDecorator);
+        decorators.add(borderDecorator);
+        editMenu.add(decorators);
 		
 		return editMenu;
 	}
