@@ -70,4 +70,15 @@ public class GroupFigure extends AbstractFigure implements Figure {
     public Iterable<Figure> getGroupParts() {
         return figuresOfGroup;
     }
+
+
+    @Override
+    public final <T> T getInstanceOf(Class<T> type) {
+        return type.cast(this);
+    }
+
+    @Override
+    public boolean isInstanceOf(Class<?> type) {
+        return type.isAssignableFrom(this.getClass());
+    }
 }

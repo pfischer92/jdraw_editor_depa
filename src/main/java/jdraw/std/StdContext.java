@@ -160,19 +160,26 @@ public class StdContext extends AbstractContext {
             }
         });
 
-		JMenuItem ungroup = new JMenuItem("Ungroup");
-        editMenu.add(ungroup);
-        ungroup.addActionListener(e -> {
-            for (Figure g : getView().getSelection()){
-                if(g instanceof GroupFigure){
-                    getModel().removeFigure(g);
-                    for (Figure f : ((GroupFigure)g).getGroupParts()){
-                        getModel().addFigure(f);
-                        getView().addToSelection(f);
+        JMenuItem ungroup = new JMenuItem("Ungroup");
+        ungroup.setEnabled(true);
+        ungroup.addActionListener(actionEvent -> {
+            List<Figure> list = getView().getSelection();
+            Iterable<Figure> list2;
+            for (Figure f : list) {
+                if (f.getInstanceOf(GroupFigure.class) != null) {
+
+                    GroupFigure g = (GroupFigure) f.getInstanceOf(GroupFigure.class);
+                    DrawModel model = getView().getModel();
+                    list2 = g.getGroupParts();
+                    for (Figure f1 : list2) {
+                        model.addFigure(f1);
                     }
+                    model.removeFigure(f);
                 }
             }
+            getView().repaint();
         });
+        editMenu.add(ungroup);
 
 
 		editMenu.addSeparator();

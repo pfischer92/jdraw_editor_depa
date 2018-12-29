@@ -76,4 +76,15 @@ public class Line extends AbstractFigure {
         }
         return handles;
     }
+
+
+    @Override
+    public final <T> T getInstanceOf(Class<T> type) {
+        return type.cast(this);
+    }
+
+    @Override
+    public boolean isInstanceOf(Class<?> type) {
+        return type.isAssignableFrom(this.getClass());
+    }
 }

@@ -42,6 +42,16 @@ public class DecoratorFigure extends AbstractFigure {
     public Rectangle getBounds() {
         return inner.getBounds();
     }
+
+    @Override
+    public <T> T getInstanceOf(Class<T> type) {
+        return type.isAssignableFrom(this.getClass()) ? type.cast(this) : inner.getInstanceOf(type);
+    }
+
+    @Override
+    public boolean isInstanceOf(Class<?> type) {
+        return type.isAssignableFrom(this.getClass());
+    }
 }
 
 

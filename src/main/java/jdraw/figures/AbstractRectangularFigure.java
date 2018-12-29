@@ -60,4 +60,14 @@ public abstract class AbstractRectangularFigure extends AbstractFigure {
         clone.rectangle = (Rectangle) this.rectangle.clone(); // copy this class's attributes
         return clone;
     }
+
+    @Override
+    public final <T> T getInstanceOf(Class<T> type) {
+        return type.cast(this);
+    }
+
+    @Override
+    public boolean isInstanceOf(Class<?> type) {
+        return type.isAssignableFrom(this.getClass());
+    }
 }
