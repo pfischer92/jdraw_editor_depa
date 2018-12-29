@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f97e073f-3da8-4a77-b0ff-79a4155053a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/jdraw/figures/AbstractRectangularFigure.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/jdraw/figures/AbstractRectangularFigure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/jdraw/figures/GroupFigure.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/jdraw/figures/GroupFigure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/jdraw/figures/Line.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/jdraw/figures/Line.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/jdraw/framework/Figure.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/jdraw/framework/Figure.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/jdraw/std/StdContext$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/jdraw/std/StdContext$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/jdraw/std/StdContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/jdraw/std/StdContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jdraw/figures/AbstractRectangularFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jdraw/figures/AbstractRectangularFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jdraw/figures/DecoratorFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jdraw/figures/DecoratorFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jdraw/figures/GroupFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jdraw/figures/GroupFigure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jdraw/figures/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jdraw/figures/Line.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jdraw/framework/Figure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jdraw/framework/Figure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jdraw/std/StdContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jdraw/std/StdContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jdraw/std/StdDrawView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jdraw/std/StdDrawView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -74,13 +62,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/figures/BorderDecorator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+            <state relative-caret-position="296">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/std/StdDrawView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="210" column="43" lean-forward="true" selection-start-line="210" selection-start-column="43" selection-end-line="210" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/figures/DecoratorFigure.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="147">
@@ -104,10 +101,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/framework/Figure.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/framework/DrawView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="108" column="19" lean-forward="true" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
+            <state relative-caret-position="384">
+              <caret line="132" column="58" lean-forward="true" selection-start-line="132" selection-start-column="58" selection-end-line="132" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -120,15 +117,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/std/StdDrawModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
             </state>
           </provider>
         </entry>
@@ -185,6 +173,7 @@
         <option value="$PROJECT_DIR$/src/main/java/jdraw/figures/GroupFigure.java" />
         <option value="$PROJECT_DIR$/src/main/java/jdraw/std/StdContext.java" />
         <option value="$PROJECT_DIR$/src/main/java/jdraw/figures/DecoratorFigure.java" />
+        <option value="$PROJECT_DIR$/src/main/java/jdraw/std/StdDrawView.java" />
       </list>
     </option>
   </component>
@@ -279,7 +268,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546118790508" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546119191170" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -385,7 +374,7 @@
       <workItem from="1541678559341" duration="978000" />
       <workItem from="1541759688956" duration="1178000" />
       <workItem from="1543147376932" duration="982000" />
-      <workItem from="1546117562570" duration="1202000" />
+      <workItem from="1546117562570" duration="1559000" />
     </task>
     <servers />
   </component>
@@ -407,10 +396,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30019000" />
+    <option name="totallyTimeSpent" value="30376000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1502" y="-365" width="1440" height="877" extended-state="0" />
+    <frame x="1899" y="-319" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31330472" />
@@ -466,19 +455,24 @@
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/jdraw/std/StdDrawView.java</url>
+          <line>207</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/jdraw/std/StdDrawView.java</url>
+          <line>202</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/resources/images/oval.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/framework/DrawView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/images/rectangle.png">
       <provider selected="true" editor-type-id="images" />
@@ -696,13 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/std/StdDrawView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="151" column="32" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/framework/DrawGrid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -825,13 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/figures/BorderDecorator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/std/StdContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -857,6 +837,27 @@
             <element signature="e#749#750#0" expanded="true" />
             <element signature="e#789#790#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/framework/DrawView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="132" column="58" lean-forward="true" selection-start-line="132" selection-start-column="58" selection-end-line="132" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/figures/BorderDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/jdraw/std/StdDrawView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="210" column="43" lean-forward="true" selection-start-line="210" selection-start-column="43" selection-end-line="210" selection-end-column="43" />
         </state>
       </provider>
     </entry>

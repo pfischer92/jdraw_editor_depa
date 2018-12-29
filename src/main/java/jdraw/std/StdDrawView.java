@@ -16,6 +16,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -204,9 +205,15 @@ public final class StdDrawView extends JComponent implements DrawView {
 
 	@Override
 	public void removeFromSelection(Figure f) {
-		if (selection.remove(f)) {
-			handles.removeIf(h -> h.getOwner() == f);
-		}
+        if (selection.remove(f)) {
+            Iterator<FigureHandle> it = handles.iterator();
+            while (it.hasNext()) {
+                FigureHandle h = it.next();
+                if (h.getOwner() == f) {
+                    it.remove();
+                }
+            }
+        }
 	}
 
 	/** Selection rectangle. */
