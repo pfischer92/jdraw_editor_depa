@@ -34,7 +34,17 @@ public class DrawModelTest {
 		@Override public void addFigureListener(FigureListener listener) { }
 		@Override public void removeFigureListener(FigureListener listener) { }
 		@Override public Figure clone() { return null;}
-	}
+
+        @Override
+        public <T> T getInstanceOf(Class<T> type) {
+            return null;
+        }
+
+        @Override
+        public boolean isInstanceOf(Class<?> type) {
+            return false;
+        }
+    }
 
 	private DrawModel m;
 	private Figure f;
