@@ -6,6 +6,7 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
+
 public abstract class AbstractRectangularFigure extends AbstractFigure {
     protected Rectangle rectangle;
 
@@ -32,7 +33,7 @@ public abstract class AbstractRectangularFigure extends AbstractFigure {
         Rectangle original = new Rectangle(rectangle); rectangle.setFrameFromDiagonal(origin, corner);
         if (!original.equals(rectangle)) { // notification only if
             propagateFigureEvent(); // there is a change
-             }
+        }
     }
 
     @Override

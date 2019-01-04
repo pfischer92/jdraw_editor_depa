@@ -4,6 +4,7 @@ import jdraw.framework.DrawContext;
 import jdraw.framework.DrawTool;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
+import jdraw.std.AddFigureCommand;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,6 +92,9 @@ public abstract class AbstractDrawTool implements DrawTool {
         if (figure.getBounds().width == 0 && figure.getBounds().height == 0) {
             view.getModel().removeFigure(figure);
         }
+
+        // Undo/redo
+        this.context.getModel().getDrawCommandHandler().addCommand(new AddFigureCommand(context.getModel(), figure));
 
         anchor = null;
         figure = null;
