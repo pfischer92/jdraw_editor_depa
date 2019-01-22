@@ -54,7 +54,9 @@ public class StdContext extends AbstractContext {
 	 * @param toolFactories  a list of DrawToolFactories that are available to the user
 	 */
 	public StdContext(DrawView view, List<DrawToolFactory> toolFactories) {
-		super(view, toolFactories);
+
+	    super(view, toolFactories);
+	    this.toolFactories = toolFactories;
 	}
 
 	/**
@@ -259,6 +261,13 @@ public class StdContext extends AbstractContext {
 	@Override
 	protected void doRegisterDrawTools() {
 		// TODO Add new figure tools here
+
+        for (DrawToolFactory dt : getToolFactories()){
+            addTool(dt == null ? null : dt.createTool(this));
+        }
+
+
+        /* Section without Spring config
 		DrawTool rectangleTool = new RectTool(this);
 		addTool(rectangleTool);
 
@@ -267,6 +276,7 @@ public class StdContext extends AbstractContext {
 
 		OvalTool ovalTool = new OvalTool(this);
 		addTool(ovalTool);
+		*/
 	}
 
 	/**

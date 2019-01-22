@@ -29,6 +29,10 @@ public class RectTool extends AbstractDrawTool {
 		super(context, "Rectangle", "rectangle.png", Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 	}
 
+    public RectTool(DrawContext context, String name, String icon) {
+        super(context, name, icon, Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+    }
+
 	protected Figure createFigure(int x, int y) {
 		return new Rect(x, y, 0, 0);
 	}

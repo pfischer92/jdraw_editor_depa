@@ -70,7 +70,7 @@ public abstract class AbstractContext extends JFrame implements DrawContext {
 	private boolean guiInitialized = false;
 
 	/** list of the figure factories. */
-	private List<DrawToolFactory> toolFactories = new LinkedList<>();
+	protected List<DrawToolFactory> toolFactories = new LinkedList<>();
 	
 	/** width of this window in pixels. */
 	private int width = DEFAULT_WIDTH;
